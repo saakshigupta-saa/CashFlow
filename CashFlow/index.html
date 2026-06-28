@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CashFlow Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <h2>CashFlow</h2>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+            <li>
+                <i class="fa-solid fa-chart-pie"></i>
+                Analytics
+            </li>
+
+            <li>
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                Transactions
+            </li>
+
+            <li>
+                <i class="fa-solid fa-chart-line"></i>
+                Reports
+            </li>
+
+            <li>
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+        </ul>
+        
+
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- Top Navbar -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="Search transactions...">
+
+            </div>
+
+            <div class="top-right">
+
+                <button id="themeBtn">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+                <button class="notify">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </button>
+
+                <div class="profile">
+
+                    <img
+                    src="https://ui-avatars.com/api/?name=Sakshi&background=22c55e&color=fff"
+                    alt="profile">
+
+                    <div>
+
+                        <h4>Sakshi</h4>
+
+                        <span>Personal Account</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Welcome -->
+
+        <section class="welcome">
+
+            <div>
+
+                <h1>
+
+                    Good Evening 👋
+
+                </h1>
+
+                <p>
+
+                    Welcome back, Sakshi.
+                    Track every rupee and build better financial habits.
+
+                </p>
+
+            </div>
+
+            <div class="date-card">
+
+                <h3 id="todayDate">
+
+                    28 June 2026
+
+                </h3>
+
+                <span>
+
+                    Daily Finance Overview
+
+                </span>
+
+            </div>
+
+        </section>
+                <!-- ================= SUMMARY CARDS ================= -->
+
+        <section class="summary-grid">
+
+            <!-- Income -->
+
+            <div class="summary-card income">
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-sack-dollar"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>Total Income</span>
+
+                    <h2 id="salaryDisplay">₹0</h2>
+
+                    <small>Monthly Salary</small>
+
+                </div>
+
+            </div>
+
+            <!-- Expenses -->
+
+            <div class="summary-card expense">
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>Total Expenses</span>
+
+                    <h2 id="expenseDisplay">₹0</h2>
+
+                    <small>Spent This Month</small>
+
+                </div>
+
+            </div>
+
+            <!-- Balance -->
+
+            <div class="summary-card balance">
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>Remaining Balance</span>
+
+                    <h2 id="balanceDisplay">₹0</h2>
+
+                    <small>Available Balance</small>
+
+                </div>
+
+            </div>
+
+            <!-- Savings -->
+
+            <div class="summary-card savings">
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-piggy-bank"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>Savings</span>
+
+                    <h2 id="savingPercent">0%</h2>
+
+                    <small>Monthly Saving Rate</small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= BUDGET GOAL ================= -->
+
+        <section class="budget-card">
+
+            <div class="budget-header">
+
+                <div>
+
+                    <h2>Monthly Budget Goal</h2>
+
+                    <p>Stay within your spending limit.</p>
+
+                </div>
+
+                <h2 id="budgetPercent">
+
+                    0%
+
+                </h2>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="progressFill"></div>
+
+            </div>
+
+            <div class="budget-footer">
+
+                <span>
+
+                    Budget Used
+
+                </span>
+
+                <span id="budgetStatus">
+
+                    Healthy ✅
+
+                </span>
+
+            </div>
+
+        </section>
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <section class="quick-actions">
+
+            <button id="downloadPdf">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Export PDF
+
+            </button>
+
+            <button id="clearAll">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Clear Data
+
+            </button>
+
+            <button>
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </button>
+
+            <button>
+
+                <i class="fa-solid fa-wallet"></i>
+
+                Savings
+
+            </button>
+
+        </section>
+                <!-- ================= MAIN GRID ================= -->
+
+        <section class="main-grid">
+
+            <!-- ================= ADD EXPENSE ================= -->
+
+            <div class="expense-form-card">
+
+                <h2>
+                    <i class="fa-solid fa-plus-circle"></i>
+                    Add New Expense
+                </h2>
+
+                <form id="expenseForm">
+
+                    <div class="input-group">
+
+                        <label>Monthly Income</label>
+
+                        <input
+                            type="number"
+                            id="salary"
+                            placeholder="Enter Monthly Salary">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Expense Category</label>
+
+                        <select id="category">
+
+                            <option>Food</option>
+
+                            <option>Shopping</option>
+
+                            <option>Travel</option>
+
+                            <option>Bills</option>
+
+                            <option>Medical</option>
+
+                            <option>Entertainment</option>
+
+                            <option>Education</option>
+
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Expense Name</label>
+
+                        <input
+                            type="text"
+                            id="expenseName"
+                            placeholder="Dinner, Fuel, Netflix...">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Amount</label>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            placeholder="₹ 0">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            id="expenseDate">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Notes</label>
+
+                        <textarea
+                            id="notes"
+                            rows="4"
+                            placeholder="Write something..."></textarea>
+
+                    </div>
+
+                    <button type="submit">
+
+                        <i class="fa-solid fa-circle-plus"></i>
+
+                        Add Expense
+
+                    </button>
+
+                    <p id="errorMessage"></p>
+
+                </form>
+
+            </div>
+
+            <!-- ================= ANALYTICS ================= -->
+
+            <div class="analytics-section">
+
+                <!-- Doughnut Chart -->
+
+                <div class="chart-card">
+
+                    <div class="chart-title">
+
+                        <h2>
+
+                            Expense Distribution
+
+                        </h2>
+
+                        <span>
+
+                            Category Wise
+
+                        </span>
+
+                    </div>
+
+                    <canvas id="expenseChart"></canvas>
+
+                </div>
+
+                <!-- Bar Chart -->
+
+                <div class="chart-card">
+
+                    <div class="chart-title">
+
+                        <h2>
+
+                            Monthly Overview
+
+                        </h2>
+
+                        <span>
+
+                            Income vs Expense
+
+                        </span>
+
+                    </div>
+
+                    <canvas id="barChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FINANCIAL INSIGHTS ================= -->
+
+        <section class="insights-grid">
+
+            <div class="insight-card">
+
+                <i class="fa-solid fa-arrow-trend-up"></i>
+
+                <h3>Highest Expense</h3>
+
+                <h2 id="highestExpense">
+
+                    ₹0
+
+                </h2>
+
+            </div>
+
+            <div class="insight-card">
+
+                <i class="fa-solid fa-money-bill-wave"></i>
+
+                <h3>Average Expense</h3>
+
+                <h2 id="averageExpense">
+
+                    ₹0
+
+                </h2>
+
+            </div>
+
+            <div class="insight-card">
+
+                <i class="fa-solid fa-coins"></i>
+
+                <h3>Total Transactions</h3>
+
+                <h2 id="transactionCount">
+
+                    0
+
+                </h2>
+
+            </div>
+
+            <div class="insight-card">
+
+                <i class="fa-solid fa-trophy"></i>
+
+                <h3>Budget Score</h3>
+
+                <h2 id="budgetScore">
+
+                    Excellent
+
+                </h2>
+
+            </div>
+
+        </section>
+                <!-- ================= RECENT TRANSACTIONS ================= -->
+
+        <section class="transactions-section">
+
+            <div class="section-header">
+
+                <h2>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Recent Transactions
+                </h2>
+
+                <input
+                    type="text"
+                    id="searchTransaction"
+                    placeholder="🔍 Search transaction...">
+
+            </div>
+
+            <div id="expenseList" class="transaction-list">
+
+                <!-- JavaScript will generate transaction cards here -->
+
+            </div>
+
+        </section>
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="settings-grid">
+
+            <div class="setting-card">
+
+                <h3>
+
+                    <i class="fa-solid fa-money-bill-wave"></i>
+
+                    Currency
+
+                </h3>
+
+                <select id="currency">
+
+                    <option value="INR">🇮🇳 INR</option>
+
+                    <option value="USD">🇺🇸 USD</option>
+
+                    <option value="EUR">🇪🇺 EUR</option>
+
+                    <option value="GBP">🇬🇧 GBP</option>
+
+                </select>
+
+            </div>
+
+            <div class="setting-card">
+
+                <h3>
+
+                    <i class="fa-solid fa-moon"></i>
+
+                    Theme
+
+                </h3>
+
+                <button id="themeToggle">
+
+                    Dark Mode
+
+                </button>
+
+            </div>
+
+            <div class="setting-card">
+
+                <h3>
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    Reports
+
+                </h3>
+
+                <button id="downloadPdf">
+
+                    Export PDF
+
+                </button>
+
+            </div>
+
+            <div class="setting-card">
+
+                <h3>
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear All
+
+                </h3>
+
+                <button id="clearData">
+
+                    Delete Records
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                <h3>CashFlow Tracker</h3>
+
+                <p>
+
+                    Smart Finance Dashboard for Daily Expense Management.
+
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">
+
+                    Dashboard
+
+                </a>
+
+                <a href="#">
+
+                    Reports
+
+                </a>
+
+                <a href="#">
+
+                    Analytics
+
+                </a>
+
+                <a href="support.html">
+
+                    Support
+
+                </a>
+
+            </div>
+
+            <div class="footer-copy">
+
+                © 2026 CashFlow Tracker | Designed & Developed by
+                <strong>Sakshi Gupta</strong>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

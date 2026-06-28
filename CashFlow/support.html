@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Support | CashFlow Tracker</title>
+    <style>
+
+/* Support Page */
+
+.support-page{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+font-family:'Poppins',sans-serif;
+}
+
+.support-header{
+text-align:center;
+margin-bottom:50px;
+}
+
+.support-header h1{
+font-size:42px;
+color:#22c55e;
+margin-bottom:15px;
+}
+
+.support-header p{
+color:#94a3b8;
+font-size:18px;
+}
+
+.support-section{
+margin-bottom:50px;
+}
+
+.support-section h2{
+font-size:30px;
+margin-bottom:25px;
+color:#22c55e;
+}
+
+/* FAQ */
+
+.faq{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.faq details{
+background:#111827;
+border-radius:15px;
+padding:18px 22px;
+border:1px solid rgba(255,255,255,.08);
+transition:.3s;
+}
+
+.faq details:hover{
+transform:translateY(-4px);
+border-color:#22c55e;
+}
+
+.faq summary{
+cursor:pointer;
+font-size:17px;
+font-weight:600;
+color:#fff;
+}
+
+.faq p{
+margin-top:15px;
+color:#cbd5e1;
+line-height:1.7;
+}
+
+/* Contact Cards */
+
+.support-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.support-card{
+background:#111827;
+padding:30px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+transition:.3s;
+}
+
+.support-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(34,197,94,.25);
+}
+
+.support-card i{
+font-size:42px;
+color:#22c55e;
+margin-bottom:15px;
+}
+
+.support-card h3{
+color:#fff;
+margin-bottom:10px;
+}
+
+.support-card p{
+color:#cbd5e1;
+margin-bottom:20px;
+}
+
+.chat-btn,
+.back-home button{
+padding:14px 25px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.chat-btn:hover,
+.back-home button:hover{
+background:#16a34a;
+transform:scale(1.05);
+}
+
+.back-home{
+text-align:center;
+margin-top:40px;
+}
+
+.back-home a{
+text-decoration:none;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.support-header h1{
+font-size:32px;
+}
+
+.support-section h2{
+font-size:24px;
+}
+
+.support-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="support-page">
+
+    <header class="support-header">
+
+        <h1><i class="fa-solid fa-headset"></i> Help & Support</h1>
+
+        <p>Need help? Find answers below or contact our support team.</p>
+
+    </header>
+
+    <!-- FAQ -->
+
+    <section class="support-section">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq">
+
+            <details>
+                <summary>How do I add an expense?</summary>
+                <p>
+                    Enter your salary, expense details, choose a category,
+                    and click <b>Add Expense</b>.
+                </p>
+            </details>
+
+            <details>
+                <summary>How do I delete an expense?</summary>
+                <p>
+                    Click the trash icon beside any transaction.
+                </p>
+            </details>
+
+            <details>
+                <summary>Where is my data stored?</summary>
+                <p>
+                    All your data is stored securely in your browser using
+                    Local Storage.
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I export my report?</summary>
+                <p>
+                    Yes. Click the <b>Download PDF</b> button from the dashboard.
+                </p>
+            </details>
+
+            <details>
+                <summary>Is my data secure?</summary>
+                <p>
+                    Yes. Your information never leaves your device unless you
+                    choose to share it.
+                </p>
+            </details>
+
+        </div>
+
+    </section>
+
+    <!-- Contact -->
+
+    <section class="support-section">
+
+        <h2>Contact Support</h2>
+
+        <div class="support-grid">
+
+            <div class="support-card">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <h3>Email Support</h3>
+
+                <p>support@cashflowtracker.com</p>
+
+            </div>
+
+            <div class="support-card">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <h3>Phone Support</h3>
+
+                <p>+91 98765 43210</p>
+
+            </div>
+
+            <div class="support-card">
+
+                <i class="fa-solid fa-comments"></i>
+
+                <h3>Live Chat</h3>
+
+                <button class="chat-btn">
+
+                    Start Chat
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Back -->
+
+    <div class="back-home">
+
+        <a href="index.html">
+
+            <button>
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Dashboard
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+<script src="script.js"></script>
+
+</body>
+
+</html>
